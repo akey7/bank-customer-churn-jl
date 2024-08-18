@@ -47,3 +47,14 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# macOS junk
+.DS_Store
+
+# Data input and output
+input/
+output/
+
+# R project
+*.Rproj
+
