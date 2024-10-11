@@ -18,8 +18,22 @@ Pkg.activate("..", io=devnull)
 
 using CairoMakie
 using Random
+using DataFrames
+
+include("../src/BankCustomerChurn.jl")
 
 Random.seed!(1234)
 ```
 
-## Let's get ready to churn!
+## Load Data
+
+Load data and look at the first five rows.
+
+```{julia}
+#| label: load-data
+#| eval: true
+#| include: true
+
+df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
+first(df, 5)
+```
