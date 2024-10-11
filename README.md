@@ -9,7 +9,9 @@ Julia dependencies for this repo need to be installed. From the root of this rep
 
 ```
 (@v1.10) pkg> activate .
-(biochemistry-jl) pkg> instantiate
+(bank-customer-churn-jl) pkg> instantiate
+[backspace]
+julia> exit()
 ```
 
 After the latter command finishes, type backspace, then:
@@ -44,6 +46,8 @@ using IJulia
 installkernel("Julia", "--project=@.")
 ```
 
+Note: Sometimes this does not need to be done, but those are the commands in case you need them!
+
 ### Quarto installation
 
 [This only needs to be done once per machine for each upgrade of Quarto.](https://quarto.org/docs/get-started/)
@@ -54,4 +58,25 @@ installkernel("Julia", "--project=@.")
 quarto check jupyter
 ```
 
-If everything comes back good, you are ready tp continue!
+If everything comes back good, you are ready to continue!
+
+### Build documentation
+
+To build the documentation which nicely presents docstrings of the Julia code that lives outside the Quarto file, you need to build the docs project. To start, run the following commands:
+
+```
+cd docs/
+julia --project=.
+]
+(docs) pkg> instantiate
+[backspace]
+julia> exit()
+```
+
+Then, from a command prompt, type
+
+```
+julia --project=. make.jl
+```
+
+If everything went well, there will be a `docs/build/index.html` that you can open to read the documentation!
