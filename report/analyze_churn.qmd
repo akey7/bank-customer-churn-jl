@@ -14,12 +14,11 @@ format:
 
 # Activate the proper Julia Project.toml
 using Pkg
-Pkg.activate(".", io=devnull)
+Pkg.activate("..", io=devnull)
 
 using CairoMakie
 using Random
 
-plotlyjs()
 Random.seed!(1234)
 ```
 
