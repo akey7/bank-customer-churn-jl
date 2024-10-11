@@ -1,0 +1,39 @@
+---
+title: "Analyze Bank Customer Churn"
+format:
+  html:
+    toc: true
+    html-math-method: mathjax
+    code-fold: false
+---
+
+```{julia}
+#| label: using-things
+#| eval: true
+#| include: false
+
+# Activate the proper Julia Project.toml
+using Pkg
+Pkg.activate("..", io=devnull)
+
+using CairoMakie
+using Random
+using DataFrames
+
+include("../src/BankCustomerChurn.jl")
+
+Random.seed!(1234)
+```
+
+## Load Data
+
+Load data and look at the first five rows.
+
+```{julia}
+#| label: load-data
+#| eval: true
+#| include: true
+
+df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
+first(df, 5)
+```
