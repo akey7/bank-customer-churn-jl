@@ -16,7 +16,7 @@ format:
 using Pkg
 Pkg.activate("..", io=devnull)
 
-using CairoMakie
+using Gadfly
 using Random
 using DataFrames
 using PrettyTables
@@ -37,4 +37,16 @@ Load data and look at the first five rows.
 
 df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
 pretty_table(first(df, 5))
+```
+
+## EDA 
+
+### Balance vs income by categorical box plots
+
+```{julia}
+#| label: box-plots-numofproducts
+#| eval: true
+#| include: true
+
+p = plot(df, x = :numofproducts, y = :estimated_salary_standardized, Geom.boxplot)
 ```
