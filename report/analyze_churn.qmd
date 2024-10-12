@@ -99,5 +99,5 @@ BankCustomerChurn.exited_vs_active_freqtable(df)
 #| include: true
 
 result = BankCustomerChurn.dt_classifier(df)
-pretty_table(first(result, 5))
+# pretty_table(first(result, 5))
 ```
