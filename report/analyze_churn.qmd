@@ -35,7 +35,7 @@ Load data and look at the first five rows.
 #| eval: true
 #| include: true
 
-df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
+df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data Standardized.csv"))
 pretty_table(first(df, 5))
 ```
 
