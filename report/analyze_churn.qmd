@@ -20,8 +20,6 @@ using CairoMakie
 using Random
 using DataFrames
 using PrettyTables
-using FreqTables
-using CategoricalArrays
 
 include("../src/BankCustomerChurn.jl")
 
@@ -90,9 +88,5 @@ fig
 #| eval: true
 #| include: true
 
-df_copy = copy(df)
-df_copy.exited = categorical(df_copy.exited)
-df_copy.is_active_member  = categorical(df_copy.is_active_member)
-cross_table = freqtable(df_copy, :exited, :is_active_member)
-cross_table
+BankCustomerChurn.exited_vs_active_freqtable(df)
 ```
