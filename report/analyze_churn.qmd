@@ -90,3 +90,14 @@ fig
 
 BankCustomerChurn.exited_vs_active_freqtable(df)
 ```
+
+## Train and evaluate model
+
+```{julia}
+#| label: train-dt-model
+#| eval: true
+#| include: true
+
+result = BankCustomerChurn.dt_classifier(df)
+pretty_table(first(result, 5))
+```
