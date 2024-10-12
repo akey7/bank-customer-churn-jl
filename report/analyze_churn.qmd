@@ -41,10 +41,8 @@ pretty_table(first(df, 5))
 
 ## EDA 
 
-### Balance vs income by categorical box plots
-
 ```{julia}
-#| label: box-plots-numofproducts
+#| label: box-plot-est-salary-vs-numofproducts
 #| eval: true
 #| include: true
 
@@ -52,7 +50,23 @@ boxplot_categories = df[!, :numofproducts]
 boxplot_values = df[!, :estimated_salary_standardized]
 
 fig = Figure()
-ax = Axis(fig[1, 1], xlabel = "Number of Products", ylabel = "Standardized Estimated Salary", title = "Estimated Salary vs Number of Products", titlealign = :left, titlesize = 18)
+ax = Axis(fig[1, 1], xlabel = "Number of Products", ylabel = "Standardized Estimated Salary", title = "Standardized Estimated Salary vs Number of Products", titlealign = :left, titlesize = 18)
 boxplot!(ax, boxplot_categories, boxplot_values)
+fig
+```
+
+
+
+```{julia}
+#| label: scatter-age-vs-estimated-salary
+#| eval: true
+#| include: true
+
+xs = df[!, :age_standardized]
+ys = df[!, :estimated_salary_standardized]
+
+fig = Figure()
+ax = Axis(fig[1, 1], xlabel = "Standardized Estimated Salary", ylabel = "Account Age", title = "Account Age vs Standardized Estimated Salary", titlealign = :left, titlesize = 18)
+scatter!(ax, xs, ys)
 fig
 ```
