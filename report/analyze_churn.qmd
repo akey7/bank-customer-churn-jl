@@ -48,7 +48,11 @@ pretty_table(first(df, 5))
 #| eval: true
 #| include: true
 
-cs = df[!, :numofproducts]
-vs = df[!, :estimated_salary_standardized]
-boxplot(cs, vs)
+boxplot_categories = df[!, :numofproducts]
+boxplot_values = df[!, :estimated_salary_standardized]
+
+fig = Figure()
+ax = Axis(fig[1, 1], xlabel = "Number of Products", ylabel = "Standardized Estimated Salary", title = "Estimated Salary vs Number of Products", titlealign = :left, titlesize = 18)
+boxplot!(ax, boxplot_categories, boxplot_values)
+fig
 ```
