@@ -46,7 +46,6 @@ function dt_classifier(df)
     df_train = df[train_indices, :]
     df_test = df[test_indices, :]
     train_features, train_labels = unpack(df_train, ==(:exited))
-    # dt_model = DecisionTreeClassifier()
     dt_model = MLJDecisionTreeInterface.DecisionTreeClassifier()
 
     max_depth_range = MLJBase.range(dt_model, :max_depth, lower = 2, upper = 20, scale = :linear, values = nothing)  # upper = 20
@@ -63,12 +62,13 @@ function dt_classifier(df)
         operation = :predict_mode,
         tuning = Grid(resolution = 10),
     )
-    tuned_machine = machine(tuning, train_features, train_labels)
-    MLJ.fit!(tuned_machine)
-    test_features, test_labels = unpack(df_test, ==(:exited))
-    pred_labels = predict(tuned_machine, test_features)
 
-    combined_df = DataFrame(df_test, true_label = test_labels, pred_label = pred_labels)
+    tuned_machine = machine(tuning, train_features, train_labels)
+    # MLJ.fit!(tuned_machine)
+    # test_features, test_labels = unpack(df_test, ==(:exited))
+    # pred_labels = predict(tuned_machine, test_features)
+
+    # combined_df = DataFrame(df_test, true_label = test_labels, pred_label = pred_labels)
 
 end
 
