@@ -16,7 +16,7 @@ format:
 using Pkg
 Pkg.activate("..", io=devnull)
 
-using Gadfly
+using CairoMakie
 using Random
 using DataFrames
 using PrettyTables
@@ -48,5 +48,7 @@ pretty_table(first(df, 5))
 #| eval: true
 #| include: true
 
-p = plot(df, x = :numofproducts, y = :estimated_salary_standardized, Geom.boxplot)
+cs = df[!, :numofproducts]
+vs = df[!, :estimated_salary_standardized]
+boxplot(cs, vs)
 ```
