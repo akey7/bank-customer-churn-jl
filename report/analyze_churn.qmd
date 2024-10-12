@@ -19,6 +19,7 @@ Pkg.activate("..", io=devnull)
 using CairoMakie
 using Random
 using DataFrames
+using PrettyTables
 
 include("../src/BankCustomerChurn.jl")
 
@@ -35,5 +36,5 @@ Load data and look at the first five rows.
 #| include: true
 
 df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
-first(df, 5)
+pretty_table(first(df, 5))
 ```
