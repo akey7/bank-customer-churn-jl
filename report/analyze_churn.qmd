@@ -68,3 +68,17 @@ ax = Axis(fig[1, 1], xlabel = "Exited", ylabel = "log10(Estimated Salary)", titl
 boxplot!(ax, boxplot_categories, boxplot_values)
 fig
 ```
+
+```{julia}
+#| label: box-plot-age-vs-exited
+#| eval: true
+#| include: true
+
+boxplot_categories = df[!, :exited]
+boxplot_values = df[!, :age]
+
+fig = Figure()
+ax = Axis(fig[1, 1], xlabel = "Exited", ylabel = "Age", title = "Age vs Exited", titlealign = :left, titlesize = 18)
+boxplot!(ax, boxplot_categories, boxplot_values)
+fig
+```
