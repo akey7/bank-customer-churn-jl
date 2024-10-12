@@ -42,6 +42,7 @@ Manifest.toml
 LICENSE
 *.yml
 *.ttf
+*.ipynb
 
 # Ignore any conda environments
 env/
