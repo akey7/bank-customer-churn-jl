@@ -37,11 +37,11 @@ function read_churn_data(filename::String)
 end
 
 function evaluate_decision_tree_classifier(df::DataFrame)
-    Tree = @load DecisionTreeClassifier pkg=DecisionTree verbosity=1
+    Tree = @load DecisionTreeClassifier pkg=DecisionTree verbosity=0
     y, X = unpack(df, ==(:exited), rng=123)
     tree = Tree()
-    mach = (tree, X, y)
-    # evaluate!(mach, resampling=Holdout(fraction_train=0.7), measures=[log_loss, accuracy], verbosity=0)
+    mach = machine(tree, X, y, scitype_check_level=0)
+    evaluate!(mach, resampling=Holdout(fraction_train=0.7), measures=[log_loss, accuracy], verbosity=1)
 end
 
 end
