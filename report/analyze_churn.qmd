@@ -19,6 +19,7 @@ Pkg.activate("..", io=devnull)
 using Random
 using DataFrames
 using PrettyTables
+using MLJ
 
 include("../src/BankCustomerChurn.jl")
 
@@ -38,12 +39,12 @@ df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data Decis
 pretty_table(first(df, 5))
 ```
 
-## EDA 
+What is the scientific type schema?
 
 ```{julia}
-#| label: cross-table-active-vs-exited
+#| label: reveal-schema
 #| eval: true
 #| include: true
 
-BankCustomerChurn.exited_vs_active_freqtable(df)
+schema(df)
 ```
