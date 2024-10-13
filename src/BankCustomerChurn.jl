@@ -9,7 +9,7 @@ using MLJBase
 using Random
 using DecisionTree
 
-export read_churn_data, exited_vs_active_freqtable
+export read_churn_data, evaluate_decision_tree_classifier
 
 """
     read_churn_data(filename::String)
@@ -36,20 +36,12 @@ function read_churn_data(filename::String)
     )
 end
 
-"""
-    exited_vs_active_freqtable(df::DataFrame)
-
-Create frequency table with "exited" on the rows and "is_active_member" on
-on the columns.
-
-# Arguments
-- `df::DataFrame`: DataFrame with churn data.
-"""
-function exited_vs_active_freqtable(df::DataFrame)
-    df_copy = copy(df)
-    df_copy.exited = categorical(df_copy.exited)
-    df_copy.is_active_member = categorical(df_copy.is_active_member)
-    freqtable(df_copy, :exited, :is_active_member)
+function evaluate_decision_tree_classifier(df::DataFrame)
+    Tree = @load DecisionTreeClassifier pkg=DecisionTree verbosity=1
+    y, X = unpack(df, ==(:exited), rng=123)
+    tree = Tree()
+    mach = (tree, X, y)
+    # evaluate!(mach, resampling=Holdout(fraction_train=0.7), measures=[log_loss, accuracy], verbosity=0)
 end
 
 end
