@@ -16,7 +16,6 @@ format:
 using Pkg
 Pkg.activate("..", io=devnull)
 
-using CairoMakie
 using Random
 using DataFrames
 using PrettyTables
@@ -35,53 +34,11 @@ Load data and look at the first five rows.
 #| eval: true
 #| include: true
 
-df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data DT Prep V3.csv"))
+df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data Decision Tree V3.csv"))
 pretty_table(first(df, 5))
 ```
 
 ## EDA 
-
-```{julia}
-#| label: box-plot-est-salary-vs-exited
-#| eval: true
-#| include: true
-
-boxplot_categories = df[!, :exited]
-boxplot_values = df[!, :estimated_salary]
-
-fig = Figure()
-ax = Axis(fig[1, 1], xlabel = "Exited", ylabel = "Estimated Salary", title = "Estimated Salary vs Exited", titlealign = :left, titlesize = 18)
-boxplot!(ax, boxplot_categories, boxplot_values)
-fig
-```
-
-```{julia}
-#| label: box-plot-est-log-salary-vs-exited
-#| eval: true
-#| include: true
-
-boxplot_categories = df[!, :exited]
-boxplot_values = log10.(df[!, :estimated_salary])
-
-fig = Figure()
-ax = Axis(fig[1, 1], xlabel = "Exited", ylabel = "log10(Estimated Salary)", title = "log10(Estimated Salary) vs Exited", titlealign = :left, titlesize = 18)
-boxplot!(ax, boxplot_categories, boxplot_values)
-fig
-```
-
-```{julia}
-#| label: box-plot-age-vs-exited
-#| eval: true
-#| include: true
-
-boxplot_categories = df[!, :exited]
-boxplot_values = df[!, :age]
-
-fig = Figure()
-ax = Axis(fig[1, 1], xlabel = "Exited", ylabel = "Age", title = "Age vs Exited", titlealign = :left, titlesize = 18)
-boxplot!(ax, boxplot_categories, boxplot_values)
-fig
-```
 
 ```{julia}
 #| label: cross-table-active-vs-exited
@@ -89,15 +46,4 @@ fig
 #| include: true
 
 BankCustomerChurn.exited_vs_active_freqtable(df)
-```
-
-## Train and evaluate model
-
-```{julia}
-#| label: train-dt-model
-#| eval: true
-#| include: true
-
-result = BankCustomerChurn.dt_classifier(df)
-# pretty_table(first(result, 5))
 ```
