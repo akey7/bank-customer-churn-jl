@@ -16,9 +16,10 @@ format:
 using Pkg
 Pkg.activate("..", io=devnull)
 
-using CairoMakie
 using Random
 using DataFrames
+using PrettyTables
+using MLJ
 
 include("../src/BankCustomerChurn.jl")
 
@@ -34,6 +35,26 @@ Load data and look at the first five rows.
 #| eval: true
 #| include: true
 
-df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data.csv"))
-first(df, 5)
+df = BankCustomerChurn.read_churn_data(joinpath("..", "input", "Churn Data Decision Tree V3.csv"))
+pretty_table(first(df, 5))
+```
+
+What is the scientific type schema?
+
+```{julia}
+#| label: reveal-schema
+#| eval: true
+#| include: true
+
+schema(df)
+```
+
+## Evaluate a defult decision tree
+
+```{julia}
+#| label: evaluate-default-tree
+#| eval: true
+#| include: true
+
+BankCustomerChurn.evaluate_decision_tree_classifier(df)
 ```
