@@ -58,3 +58,13 @@ schema(df)
 
 BankCustomerChurn.evaluate_decision_tree_classifier(df)
 ```
+
+## Documentation of `DecisionTreeClassifier`
+
+```{julia}
+#| label: doc-default-tree
+#| eval: true
+#| include: true
+
+doc("DecisionTreeClassifier", pkg="DecisionTree")
+```
