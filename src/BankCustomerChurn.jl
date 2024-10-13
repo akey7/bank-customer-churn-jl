@@ -2,11 +2,7 @@ module BankCustomerChurn
 
 using CSV
 using DataFrames
-using FreqTables
-using CategoricalArrays
 using MLJ
-using MLJBase
-using Random
 using DecisionTree
 
 export read_churn_data, evaluate_decision_tree_classifier
