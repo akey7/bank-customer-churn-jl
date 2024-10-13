@@ -48,3 +48,13 @@ What is the scientific type schema?
 
 schema(df)
 ```
+
+## Evaluate a defult decision tree
+
+```{julia}
+#| label: evaluate-default-tree
+#| eval: true
+#| include: true
+
+BankCustomerChurn.evaluate_decision_tree_classifier(df)
+```
