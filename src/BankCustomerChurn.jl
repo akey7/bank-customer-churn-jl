@@ -36,6 +36,12 @@ function read_churn_data(filename::String)
     )
 end
 
+"""
+    evaluate_decision_tree_classifier(df::DataFrame)
+
+# Arguments
+- `df::DataFrame`: DataFrame with scitypes coerced onto it (this is done by `read_churn_data()`)
+"""
 function evaluate_decision_tree_classifier(df::DataFrame)
     Tree = @load DecisionTreeClassifier pkg=DecisionTree verbosity=0
     y, X = unpack(df, ==(:exited), rng=123)
