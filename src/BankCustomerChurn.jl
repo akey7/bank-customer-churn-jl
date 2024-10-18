@@ -2,11 +2,7 @@ module BankCustomerChurn
 
 using CSV
 using DataFrames
-using FreqTables
-using CategoricalArrays
 using MLJ
-using MLJBase
-using Random
 using DecisionTree
 
 export read_churn_data, evaluate_decision_tree_classifier
@@ -32,16 +28,27 @@ function read_churn_data(filename::String)
         :num_of_products => Continuous,
         :has_cr_card => Multiclass,
         :is_active_member => Multiclass,
-        :exited => Multiclass
+        :exited => Multiclass,
     )
 end
 
+"""
+    evaluate_decision_tree_classifier(df::DataFrame)
+
+# Arguments
+- `df::DataFrame`: DataFrame with scitypes coerced onto it (this is done by `read_churn_data()`)
+"""
 function evaluate_decision_tree_classifier(df::DataFrame)
-    Tree = @load DecisionTreeClassifier pkg=DecisionTree verbosity=0
-    y, X = unpack(df, ==(:exited), rng=123)
+    Tree = @load DecisionTreeClassifier pkg = DecisionTree verbosity = 0
+    y, X = unpack(df, ==(:exited), rng = 123)
     tree = Tree()
-    mach = machine(tree, X, y, scitype_check_level=0)
-    evaluate!(mach, resampling=Holdout(fraction_train=0.7), measures=[log_loss, accuracy], verbosity=1)
+    mach = machine(tree, X, y, scitype_check_level = 0)
+    evaluate!(
+        mach,
+        resampling = Holdout(fraction_train = 0.7),
+        measures = [log_loss, accuracy],
+        verbosity = 1,
+    )
 end
 
 end
